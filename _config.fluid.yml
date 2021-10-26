@@ -103,3 +103,6 @@ theme: landscape
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+# Background image
+banner_img: /img/bg/vdysjx.png   # 对应存放在 /source/img/bg/example.jpg
