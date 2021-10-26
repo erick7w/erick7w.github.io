@@ -108,3 +108,6 @@ deploy:
 
 # Background Image
 banner_img: /img/bg/vdysjx.png
+
+navbar:
+  blog_title: 博客标题
