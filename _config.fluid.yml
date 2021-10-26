@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: weijun Wu
-subtitle: 'subtitle'
-description: 'description'
+title: Hexo
+subtitle: ''
+description: ''
 keywords:
-author: weijun Wu
-language: zh-CN
+author: John Doe
+language: en
 timezone: ''
 
 # URL
@@ -97,14 +97,9 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: fluid
+theme: landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
-  repo: https://github.com/erick7w/erick7w.github.io.git
-  branch: main
-
-# Background Image
-banner_img: /img/bg/vdysjx.png
+  type: ''
