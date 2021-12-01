@@ -106,8 +106,30 @@ deploy:
   repo: https://github.com/erick7w/erick7w.github.io.git
   branch: main
 
-# Background Image
-banner_img: /img/bg/vdysjx.png
+static_prefix:
+  banner_img: /img/bg/vdysjx.png
+  banner_img_height: 70
+  banner_mask_alpha: 0.5
+
 
 navbar:
-  blog_title: 博客标题
+  blog_title: weijun Wu
+  menu:
+    - { key: '首页', link: '/', icon: 'iconfont icon-home-fill' }
+    # - { key: '标签', link: '/tags/', icon: 'iconfont icon-tags-fill' }
+    - { key: '分类', link: '/categories/', icon: 'iconfont icon-category-fill' }
+    - { key: '关于', link: '/about/', icon: 'iconfont icon-user-fill', name: '联系我' }
+    - {
+      key: '文档',
+      icon: 'iconfont icon-books',
+      submenu: [
+        { key: '主题博客', link: 'https://hexo.fluid-dev.com/' },
+        { key: '配置指南', link: 'https://hexo.fluid-dev.com/docs/guide/' },
+        { key: '图标用法', link: 'https://hexo.fluid-dev.com/docs/icon/' }
+      ]
+  }
+
+font:  # 主题字体配置
+  font_size: 14px        # 全局字号
+  font-family: system-ui # 全局字体族
+  code_font_size: 90%    # 代码的字号

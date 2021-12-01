@@ -105,9 +105,3 @@ deploy:
   type: git
   repo: https://github.com/erick7w/erick7w.github.io.git
   branch: main
-
-# Background Image
-banner_img: /img/bg/vdysjx.png
-
-navbar:
-  blog_title: weijun Wu
