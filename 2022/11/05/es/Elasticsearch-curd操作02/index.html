@@ -16,15 +16,15 @@
   <meta name="author" content="weijun Wu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="&#x2F;&#x2F; 查看节点GET _cat&#x2F;nodes&#x2F;&#x2F; 查看分片GET _cat&#x2F;shards &#x2F;&#x2F; create document. 自动生成idPOST users&#x2F;_doc{  “user”: “Mike”,  “post_da te”: “2022-11-01T22:24:56”,  “message”: “">
+    <meta name="description" content="&#x2F;&#x2F; 查看节点 GET _cat&#x2F;nodes&#x2F;&#x2F; 查看分片 GET _cat&#x2F;shards &#x2F;&#x2F; create document. 自动生成id POST users&#x2F;_doc{  “user”: “Mike”,  “post_da te”: “2022-11-01T22:24:56”,  “message”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Elasticsearch-curd操作02">
 <meta property="og:url" content="http://example.com/2022/11/05/es/Elasticsearch-curd%E6%93%8D%E4%BD%9C02/index.html">
 <meta property="og:site_name" content="weijun Wu">
-<meta property="og:description" content="&#x2F;&#x2F; 查看节点GET _cat&#x2F;nodes&#x2F;&#x2F; 查看分片GET _cat&#x2F;shards &#x2F;&#x2F; create document. 自动生成idPOST users&#x2F;_doc{  “user”: “Mike”,  “post_da te”: “2022-11-01T22:24:56”,  “message”: “">
+<meta property="og:description" content="&#x2F;&#x2F; 查看节点 GET _cat&#x2F;nodes&#x2F;&#x2F; 查看分片 GET _cat&#x2F;shards &#x2F;&#x2F; create document. 自动生成id POST users&#x2F;_doc{  “user”: “Mike”,  “post_da te”: “2022-11-01T22:24:56”,  “message”">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-05T09:50:55.000Z">
-<meta property="article:modified_time" content="2022-11-05T09:49:43.627Z">
+<meta property="article:modified_time" content="2022-11-05T09:50:29.088Z">
 <meta property="article:author" content="weijun Wu">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -288,9 +288,13 @@
             
               <div class="markdown-body">
                 
-                <p>&#x2F;&#x2F; 查看节点<br>GET _cat&#x2F;nodes<br>&#x2F;&#x2F; 查看分片<br>GET _cat&#x2F;shards</p>
-<p>&#x2F;&#x2F; create document. 自动生成id<br>POST users&#x2F;_doc<br>{<br>  “user”: “Mike”,<br>  “post_da te”: “2022-11-01T22:24:56”,<br>  “message”: “trying out kibana”<br>}</p>
-<p>&#x2F;&#x2F; create document. 指定id，如果id已存在，则报错<br>PUT users&#x2F;_doc&#x2F;1?op_type&#x3D;create<br>{<br>  “user”: “Jack”,<br>  “post_date”: “2022-11-02T22:24:56”,<br>  “message”: “trying out kibana”<br>}</p>
+                <p>&#x2F;&#x2F; 查看节点</p>
+<p>GET _cat&#x2F;nodes<br>&#x2F;&#x2F; 查看分片</p>
+<p>GET _cat&#x2F;shards</p>
+<p>&#x2F;&#x2F; create document. 自动生成id</p>
+<p>POST users&#x2F;_doc<br>{<br>  “user”: “Mike”,<br>  “post_da te”: “2022-11-01T22:24:56”,<br>  “message”: “trying out kibana”<br>}</p>
+<p>&#x2F;&#x2F; create document. 指定id，如果id已存在，则报错</p>
+<p>PUT users&#x2F;_doc&#x2F;1?op_type&#x3D;create<br>{<br>  “user”: “Jack”,<br>  “post_date”: “2022-11-02T22:24:56”,<br>  “message”: “trying out kibana”<br>}</p>
 <p>&#x2F;&#x2F; create document. 指定id，如果已经存在，则报错<br>PUT users&#x2F;_create&#x2F;1<br>{<br>  “user”: “Lili”<br>  “post_date”: “2022-11-02T22:24:56”,<br>  “message”: “good girl”<br>}</p>
 <p>&#x2F;&#x2F; get document<br>GET users&#x2F;_doc&#x2F;1<br>&#x2F;&#x2F; alter document<br>PUT users&#x2F;_doc&#x2F;1<br>{<br>  “user”: “Mike”<br>}<br>&#x2F;&#x2F; 在原文档上增加字段<br>POST users&#x2F;_update&#x2F;1<br>{<br>  “doc”:{<br>    “post_date”: “2022-11-02T22:24:50”,<br>    “message”: “bad boy”<br>  }<br>}<br>&#x2F;&#x2F; delete 删除文档<br>DELETE users&#x2F;_doc&#x2F;1</p>
 <p>&#x2F;&#x2F; 批量操作可以在一个请求中对多个索引进行curd,部分失败不会影响其他的操作<br>&#x2F;&#x2F; _bulk 批量操作，<br>POST _bulk<br>{ “index”: { “_index”: “test”, “_id”: “1”}}<br>{ “field1”: “value1”}<br>{ “delete”: {“_index”: “test”, “_id”: “2”}}<br>{ “create”: {“_index”: “test2”, “_id”: “3”}}<br>{ “field1”: “value3”}<br>{ “update”: {“_id”: “1”, “_index”: “test”}}<br>{ “doc”: { “field2”: “value2”}} </p>
