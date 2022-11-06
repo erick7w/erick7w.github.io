@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="weijun Wu">
 <meta property="og:description" content="文章内容摘自极客时间《Elasticsearch核心技术与实战》与《Elasticsearch实战》  深入理解 Elasticsaerch从两个角度来理解es中数据是如何组织的 逻辑设计 搜索应用所需要注意的。 用于索引和搜索的基本单位是文档，可以将其认为是关系数据库里的一行数据，索引更像是关系型数据库的一张表。   物理设计 在后台es是如何处理数据的es将每个索引划分为分片，每份分片可以在">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/45e32f67e537436a8f6a67113f606049~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8ce7fd0a3a664c52a1f89c5ea8faf527~tplv-k3u1fbpfcp-watermark.image">
-<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/12ea6001f53743e7b745ab123ddddc56~tplv-k3u1fbpfcp-watermark.image">
+<meta property="og:image" content="http://example.com/img/category/es/es1.png">
+<meta property="og:image" content="http://example.com/img/category/es/es2.png">
+<meta property="og:image" content="http://example.com/img/category/es/es3.png">
 <meta property="article:published_time" content="2022-11-05T09:25:55.000Z">
-<meta property="article:modified_time" content="2022-11-05T09:47:52.324Z">
+<meta property="article:modified_time" content="2022-11-06T04:27:12.150Z">
 <meta property="article:author" content="weijun Wu">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/45e32f67e537436a8f6a67113f606049~tplv-k3u1fbpfcp-watermark.image">
+<meta name="twitter:image" content="http://example.com/img/category/es/es1.png">
   
   
   
@@ -390,11 +390,10 @@
 <td>DSL</td>
 </tr>
 </tbody></table>
-<h2 id="索引一篇文章时发生了什么"><a href="#索引一篇文章时发生了什么" class="headerlink" title="索引一篇文章时发生了什么"></a>索引一篇文章时发生了什么</h2><p>默认情况下，当索引一篇文章时，首先根据文档ID的散列值选择一个主分片，并将文档发送到该主分片。这份主分片可能位于另一个节点    </p>
-<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/45e32f67e537436a8f6a67113f606049~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload alt="image.png"><br>然后文档被发送到该主分片的所有副本分片进行索引。这使得副本分片和主分片之前保持数据的同步。数据同步使得副本分片可以服务于搜索请求，并在原有主分片无法访问时自动升级为主分片。</p>
+<h2 id="索引一篇文章时发生了什么"><a href="#索引一篇文章时发生了什么" class="headerlink" title="索引一篇文章时发生了什么"></a>索引一篇文章时发生了什么</h2><p>默认情况下，当索引一篇文章时，首先根据文档ID的散列值选择一个主分片，并将文档发送到该主分片。这份主分片可能位于另一个节点<br><img src="/../../img/category/./es/es1.png" srcset="/img/loading.gif" lazyload alt="es/es1"></p>
+<p>然后文档被发送到该主分片的所有副本分片进行索引。这使得副本分片和主分片之前保持数据的同步。数据同步使得副本分片可以服务于搜索请求，并在原有主分片无法访问时自动升级为主分片。</p>
 <h2 id="搜索时发生了什么"><a href="#搜索时发生了什么" class="headerlink" title="搜索时发生了什么"></a>搜索时发生了什么</h2><p>当搜索一个索引时，es需要在该索引的完整分片中进行查找，这些分片可以是主分片，也可以是副本分片，原因是对应的主分片和副本分片通常包含一样的文档</p>
-<h2 id="什么是倒排索引"><a href="#什么是倒排索引" class="headerlink" title="什么是倒排索引"></a>什么是倒排索引</h2><p>一个倒排索引由文档中所有不重复词的列表构成，对于其中的每一个词，都有一个包含他的文档列表</p>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8ce7fd0a3a664c52a1f89c5ea8faf527~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="什么是倒排索引"><a href="#什么是倒排索引" class="headerlink" title="什么是倒排索引"></a>什么是倒排索引</h2><p>一个倒排索引由文档中所有不重复词的列表构成，对于其中的每一个词，都有一个包含他的文档列表<br><img src="/../../img/category/./es/es2.png" srcset="/img/loading.gif" lazyload alt="es/es2"></p>
 <h2 id="图书和倒排索引的类比"><a href="#图书和倒排索引的类比" class="headerlink" title="图书和倒排索引的类比"></a>图书和倒排索引的类比</h2><ul>
 <li>图书<ul>
 <li>正排索引 - 目录页</li>
@@ -426,8 +425,7 @@
 </ul>
 </li>
 </ul>
-<p>一个例子 - Elasticsearch</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/12ea6001f53743e7b745ab123ddddc56~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>一个例子 - Elasticsearch<br><img src="/../../img/category/./es/es3.png" srcset="/img/loading.gif" lazyload alt="es/es3"></p>
 <ul>
 <li>Elasticsearch 的json文档中的每个字段，都有自己的倒排索引</li>
 <li>可以指定对某些字段不做索引<ul>
