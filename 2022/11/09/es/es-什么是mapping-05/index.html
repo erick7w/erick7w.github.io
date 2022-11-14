@@ -16,25 +16,21 @@
   <meta name="author" content="weijun Wu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="文章内容摘自极客时间《Elasticsearch核心技术与实战》与《Elasticsearch实战》  深入理解 Elasticsaerch从两个角度来理解es中数据是如何组织的 逻辑设计 搜索应用所需要注意的。 用于索引和搜索的基本单位是文档，可以将其认为是关系数据库里的一行数据，索引更像是关系型数据库的一张表。   物理设计 在后台es是如何处理数据的es将每个索引划分为分片，每份分片可以在">
+    <meta name="description" content="Elasticsearch 什么是mappingmapping 的定义 Mapping类似数据库中的schema的定义，作用如下 定义索引中的字段的名称 定义字段的数据结构类型，例如字符串，数字，布尔… … 字段，倒排索引的相关配置，（Analyzed or Not Analyzed，Analyzer）   Mapping会把Json文档映射成Lucene所需要的扁平格式 一个mapping属于一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="es-深入理解-01">
-<meta property="og:url" content="http://example.com/2022/11/05/es/es-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-01/index.html">
+<meta property="og:title" content="es-什么是mapping-05">
+<meta property="og:url" content="http://example.com/2022/11/09/es/es-%E4%BB%80%E4%B9%88%E6%98%AFmapping-05/index.html">
 <meta property="og:site_name" content="weijun Wu">
-<meta property="og:description" content="文章内容摘自极客时间《Elasticsearch核心技术与实战》与《Elasticsearch实战》  深入理解 Elasticsaerch从两个角度来理解es中数据是如何组织的 逻辑设计 搜索应用所需要注意的。 用于索引和搜索的基本单位是文档，可以将其认为是关系数据库里的一行数据，索引更像是关系型数据库的一张表。   物理设计 在后台es是如何处理数据的es将每个索引划分为分片，每份分片可以在">
+<meta property="og:description" content="Elasticsearch 什么是mappingmapping 的定义 Mapping类似数据库中的schema的定义，作用如下 定义索引中的字段的名称 定义字段的数据结构类型，例如字符串，数字，布尔… … 字段，倒排索引的相关配置，（Analyzed or Not Analyzed，Analyzer）   Mapping会把Json文档映射成Lucene所需要的扁平格式 一个mapping属于一">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/category/es/es1.png">
-<meta property="og:image" content="http://example.com/img/category/es/es2.png">
-<meta property="og:image" content="http://example.com/img/category/es/es3.png">
-<meta property="article:published_time" content="2022-11-05T09:25:55.000Z">
-<meta property="article:modified_time" content="2022-11-07T15:36:28.555Z">
+<meta property="article:published_time" content="2022-11-09T13:34:38.000Z">
+<meta property="article:modified_time" content="2022-11-09T14:11:59.416Z">
 <meta property="article:author" content="weijun Wu">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/category/es/es1.png">
   
   
   
-  <title>es-深入理解-01 - weijun Wu</title>
+  <title>es-什么是mapping-05 - weijun Wu</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="es-深入理解-01"></span>
+            <span id="subtitle" data-typed-text="es-什么是mapping-05"></span>
           
         </div>
 
@@ -210,8 +206,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-11-05 17:25" pubdate>
-          2022年11月5日 下午
+        <time datetime="2022-11-09 21:34" pubdate>
+          2022年11月9日 晚上
         </time>
       </span>
     
@@ -222,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          555 字
         
       </span>
     
@@ -233,7 +229,7 @@
         
         
         
-          20 分钟
+          5 分钟
         
       </span>
     
@@ -299,7 +295,7 @@
       
         <a href="/2022/11/05/es/es-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-01/" title="es-深入理解-01"
            class="list-group-item list-group-item-action
-           active">
+           ">
           <span class="category-post">es-深入理解-01</span>
         </a>
       
@@ -335,7 +331,7 @@
       
         <a href="/2022/11/09/es/es-%E4%BB%80%E4%B9%88%E6%98%AFmapping-05/" title="es-什么是mapping-05"
            class="list-group-item list-group-item-action
-           ">
+           active">
           <span class="category-post">es-什么是mapping-05</span>
         </a>
       
@@ -359,152 +355,48 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">es-深入理解-01</h1>
+            <h1 style="display: none">es-什么是mapping-05</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>文章内容摘自极客时间《Elasticsearch核心技术与实战》与《Elasticsearch实战》</p>
-</blockquote>
-<h1 id="深入理解-Elasticsaerch"><a href="#深入理解-Elasticsaerch" class="headerlink" title="深入理解 Elasticsaerch"></a>深入理解 Elasticsaerch</h1><h2 id="从两个角度来理解es中数据是如何组织的"><a href="#从两个角度来理解es中数据是如何组织的" class="headerlink" title="从两个角度来理解es中数据是如何组织的"></a>从两个角度来理解es中数据是如何组织的</h2><ul>
-<li>逻辑设计<ul>
-<li>搜索应用所需要注意的。 用于索引和搜索的基本单位是文档，可以将其认为是关系数据库里的一行数据，索引更像是关系型数据库的一张表。</li>
+                <h1 id="Elasticsearch-什么是mapping"><a href="#Elasticsearch-什么是mapping" class="headerlink" title="Elasticsearch 什么是mapping"></a>Elasticsearch 什么是mapping</h1><h2 id="mapping-的定义"><a href="#mapping-的定义" class="headerlink" title="mapping 的定义"></a>mapping 的定义</h2><ul>
+<li>Mapping类似数据库中的schema的定义，作用如下<ul>
+<li>定义索引中的字段的名称</li>
+<li>定义字段的数据结构类型，例如字符串，数字，布尔… …</li>
+<li>字段，倒排索引的相关配置，（Analyzed or Not Analyzed，Analyzer）</li>
 </ul>
 </li>
-<li>物理设计<ul>
-<li>在后台es是如何处理数据的es将每个索引划分为分片，每份分片可以在集群的不同服务器间迁移。通常，应用程序无须关心这些，因为无论是单台还是多台服务器，应用和es的交互基本保持不变。但是，开始管理集群的时候，就需要留心了。原因是，物理设计的配置方式决定了集群的性能，可扩展性和可用性。</li>
-</ul>
-</li>
-</ul>
-<h2 id="理解逻辑设计：-文档、类型和索引"><a href="#理解逻辑设计：-文档、类型和索引" class="headerlink" title="理解逻辑设计： 文档、类型和索引"></a>理解逻辑设计： 文档、类型和索引</h2><ul>
-<li>文档<ul>
-<li>文档是索引和搜索数据的最小单位</li>
-<li>一篇文档同时包含字段和它的取值</li>
-<li>文档可以是多层次的，一个字段的取值可以是简单的（例如字符串），也可以是包含其他字段和取值</li>
-<li>拥有灵活的结构，文档不依赖于预先定义的模式，并非所有的文档都需要拥有相同的字段，它们不是受限于同一个模式</li>
-<li>每个文档都有一个unique id，可指定或自动生成</li>
+<li>Mapping会把Json文档映射成Lucene所需要的扁平格式</li>
+<li>一个mapping属于一个索引的Type<ul>
+<li>每个文档都属于一个Type</li>
+<li>一个Type有一个mapping定义</li>
+<li>7.0开始，不需要在mapping定义中指定type信息</li>
 </ul>
 </li>
 </ul>
-<p>文档的元数据</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;_index&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;movies&quot;</span><span class="hljs-punctuation">,</span>   <span class="hljs-comment">// 文档所属的索引名</span><br>    <span class="hljs-attr">&quot;_type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;_doc&quot;</span><span class="hljs-punctuation">,</span>      <span class="hljs-comment">// 文档所属的类型名</span><br>    <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1&quot;</span><span class="hljs-punctuation">,</span>           <span class="hljs-comment">// 文档的唯一id</span><br>    <span class="hljs-attr">&quot;_score&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">14.93223</span><span class="hljs-punctuation">,</span>   <span class="hljs-comment">// 相关性打分</span><br>    <span class="hljs-attr">&quot;_source&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>          <span class="hljs-comment">// 文档的原始json数据</span><br>        <span class="hljs-attr">&quot;year&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1992</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;@version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;genre&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>            <span class="hljs-string">&quot;Adventure&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-string">&quot;Animation&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-string">&quot;Children&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-string">&quot;Cimedy&quot;</span><span class="hljs-punctuation">,</span><br>            <span class="hljs-string">&quot;Fantasy&quot;</span><br>        <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;title&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;toy Story&quot;</span><br>    <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
-<ul>
-<li>类型<ul>
-<li>在老版本一个索引可设置多个类型，新版本已经去除</li>
+<h2 id="字段的数据类型"><a href="#字段的数据类型" class="headerlink" title="字段的数据类型"></a>字段的数据类型</h2><ul>
+<li>简单类型<ul>
+<li>Text&#x2F;Keyword</li>
+<li>Date</li>
+<li>Integer&#x2F;Floating</li>
+<li>Boolean</li>
+<li>IPv4 &amp; IPv6</li>
+</ul>
+</li>
+<li>复杂类型-对象和嵌套对象<ul>
+<li>对象类型&#x2F;嵌套类型</li>
+</ul>
+</li>
+<li>特殊类型<ul>
+<li>geo_point &amp;* geo_shape &#x2F; percolator</li>
 </ul>
 </li>
 </ul>
-<p>下面是摘自官方的说明</p>
-<blockquote>
-<p>在Elasticsearch 6.0.0或更高版本中创建的索引可能只包含单一的<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/5.6/mapping.html#mapping-type" title="映射类型">映射类型</a>。在5.x中创建具有多种映射类型的索引将继续像Elasticsearch 6.x一样发挥作用。类型将在Elasticsearch 7.0.0的API中不建议使用，并在8.0.0中完全删除。</p>
-</blockquote>
-<ul>
-<li>索引<ul>
-<li>索引是文档的容器，是一类文档的集合</li>
-<li>每个索引都有自己的mapping的定义，用于包含文档的字段名和字段类型</li>
-<li>每个索引存储在磁盘的同组文件中；索引存储了所有映射类型的字段，还有一些配置</li>
-<li>每一个索引都有一个refresh_interval的设置，定义了新近索引的文档对于搜索可见的时间间隔，默认是每秒更新一次</li>
-<li>同一个索引是由一个或多个称为分片的数据块组成</li>
-</ul>
-</li>
-</ul>
-<h2 id="理解物理设计：节点和分片"><a href="#理解物理设计：节点和分片" class="headerlink" title="理解物理设计：节点和分片"></a>理解物理设计：节点和分片</h2><ul>
-<li><p>节点</p>
-<ul>
-<li>一个节点就是一个es实例，多个es节点组成es集群</li>
-</ul>
-</li>
-<li><p>分片</p>
-<ul>
-<li>分片是组成索引的数据块</li>
-<li>分片是es将数据从一个节点迁移到另一个节点的最小单位</li>
-<li>主分片<ul>
-<li>用以解决数据水平扩展问题。通过主分片，可以将数据分布到集群的所有节点之上</li>
-<li>一个分片是一个运行的lucene实例</li>
-<li>主分片数在创建时指定，后续不需修改，除非reindex</li>
-</ul>
-</li>
-<li>副本分片<ul>
-<li>副本分片数，可以动态调整</li>
-<li>增加副本数，还可以在一定程度上提高服务的可用性（读取的吞吐）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="抽象与类比"><a href="#抽象与类比" class="headerlink" title="抽象与类比"></a>抽象与类比</h2><p>拿传统的关系型数据库和elasticsearch做一下类比：</p>
-<table>
-<thead>
-<tr>
-<th>RDBMS</th>
-<th>Elasticsearch</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Table</td>
-<td>index(type)</td>
-</tr>
-<tr>
-<td>Row</td>
-<td>Document</td>
-</tr>
-<tr>
-<td>Column</td>
-<td>Field</td>
-</tr>
-<tr>
-<td>Schema</td>
-<td>Mapping</td>
-</tr>
-<tr>
-<td>SQL</td>
-<td>DSL</td>
-</tr>
-</tbody></table>
-<h2 id="索引一篇文章时发生了什么"><a href="#索引一篇文章时发生了什么" class="headerlink" title="索引一篇文章时发生了什么"></a>索引一篇文章时发生了什么</h2><p>默认情况下，当索引一篇文章时，首先根据文档ID的散列值选择一个主分片，并将文档发送到该主分片。这份主分片可能位于另一个节点<br><img src="/../../img/category/./es/es1.png" srcset="/img/loading.gif" lazyload alt="es/es1"></p>
-<p>然后文档被发送到该主分片的所有副本分片进行索引。这使得副本分片和主分片之前保持数据的同步。数据同步使得副本分片可以服务于搜索请求，并在原有主分片无法访问时自动升级为主分片。</p>
-<h2 id="搜索时发生了什么"><a href="#搜索时发生了什么" class="headerlink" title="搜索时发生了什么"></a>搜索时发生了什么</h2><p>当搜索一个索引时，es需要在该索引的完整分片中进行查找，这些分片可以是主分片，也可以是副本分片，原因是对应的主分片和副本分片通常包含一样的文档</p>
-<h2 id="什么是倒排索引"><a href="#什么是倒排索引" class="headerlink" title="什么是倒排索引"></a>什么是倒排索引</h2><p>一个倒排索引由文档中所有不重复词的列表构成，对于其中的每一个词，都有一个包含他的文档列表<br><img src="/../../img/category/./es/es2.png" srcset="/img/loading.gif" lazyload alt="es/es2"></p>
-<h2 id="图书和倒排索引的类比"><a href="#图书和倒排索引的类比" class="headerlink" title="图书和倒排索引的类比"></a>图书和倒排索引的类比</h2><ul>
-<li>图书<ul>
-<li>正排索引 - 目录页</li>
-<li>倒排索引 - 索引页</li>
-</ul>
-</li>
-<li>搜索引擎<ul>
-<li>正排索引 - 文档id到文档内容和单词的关联</li>
-<li>倒排索引 - 单词到文档id的关系</li>
-</ul>
-</li>
-</ul>
-<h2 id="倒排索引的核心组成"><a href="#倒排索引的核心组成" class="headerlink" title="倒排索引的核心组成"></a>倒排索引的核心组成</h2><ul>
-<li>倒排索引包含两个部分<ul>
-<li>单词词典（Term Dictionary），记录所有文档的单词，记录单词到倒排列表的关联关系<ul>
-<li>单词词典一般比较大，可以通过B+树或哈希拉链法实现，已满足高性能的插入与查询</li>
-</ul>
-</li>
-<li>倒排列表（Posting List）-记录了单词对应的文档结合，由倒排索引项组成<ul>
-<li>倒排索引项（posting）<ul>
-<li>文档id</li>
-<li>词频TF -该单词所在文档中出现的次数，用于相关性评分</li>
-<li>位置（Position）-单词在文档中分词的位置。用于语句搜索（phrase query）</li>
-<li>偏移（offset） -记录单词的开始结束位置，实现高亮显示</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>一个例子 - Elasticsearch<br><img src="/../../img/category/./es/es3.png" srcset="/img/loading.gif" lazyload alt="es/es3"></p>
-<ul>
-<li>Elasticsearch 的json文档中的每个字段，都有自己的倒排索引</li>
-<li>可以指定对某些字段不做索引<ul>
-<li>优点：节省存储空间</li>
-<li>缺点：字段无法被搜索</li>
-</ul>
-</li>
+<h2 id="什么是Dynamic-Mapping"><a href="#什么是Dynamic-Mapping" class="headerlink" title="什么是Dynamic Mapping"></a>什么是Dynamic Mapping</h2><ul>
+<li>在写入文档时候，如果索引不存在，会自动创建索引</li>
+<li>Dynamic Mapping的机制，使得我们无需动手定义mappings。Elasticsearch会自动根据文档信息，推算出字段的类型</li>
+<li>在使用地理位置信息时，有时候会推算的不对。如果类型设置不对时，会导致一些功能无法运行，例如Rang查询</li>
 </ul>
 
                 
@@ -544,8 +436,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>es-深入理解-01</div>
-      <div>http://example.com/2022/11/05/es/es-深入理解-01/</div>
+      <div>es-什么是mapping-05</div>
+      <div>http://example.com/2022/11/09/es/es-什么是mapping-05/</div>
     </div>
     <div class="license-meta">
       
@@ -557,7 +449,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年11月5日</div>
+          <div>2022年11月9日</div>
         </div>
       
       
@@ -589,18 +481,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/06/es/es-%E6%96%87%E6%A1%A3%E7%9A%84CRUD%E5%92%8C%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C-02/" title="es-文档的CRUD和批量操作-02">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">es-文档的CRUD和批量操作-02</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/20/k8s/k8s-01/" title="k8s-学习环境搭建">
-                        <span class="hidden-mobile">k8s-学习环境搭建</span>
+                      <a href="/2022/11/09/curl/curl-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/" title="curl-常用功能">
+                        <span class="hidden-mobile">curl-常用功能</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -621,7 +507,7 @@
         var options = Object.assign(
           {"enable":true,"clientID":"7603aa3c95bb3fc9552a","clientSecret":"a2d39dd2203b8b0146f8a235fe10f92fbf0c9404","repo":"erick7w.github.io","owner":"erick7w","admin":["erick7w"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","shortname":"fluid"},
           {
-            id: '5df3cf18439a7e0a4e2643b0b2ec1d74'
+            id: '03e14df0d5454d05cd4a514f682de6ce'
           }
         )
         var gitalk = new Gitalk(options);
